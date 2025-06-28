@@ -125,7 +125,7 @@ const SignUp = () => {
   // Form Validation
 
   function validateForm() {
-    const isValidEmail = ValidateMail();
+    const isValidEmail = ValidateMail(email);
     console.log(isValidEmail);
     const isValidFirstName = validateFirstName();
     console.log(isValidFirstName);
@@ -170,7 +170,7 @@ const SignUp = () => {
               className="details"
               onChange={(e) => {
                 setEmail(e.target.value);
-                validateEmail();
+                ValidateMail(email);
               }}
               placeholder="jeffdan@gmail.com"
             />
@@ -301,7 +301,7 @@ const SignUp = () => {
                     ) {
                         let token = data.Token;
                         sessionStorage.setItem('Token', token);
-                      navigate('/Login');
+                      navigate('/Home');
                       // console.log(data)
                     } else {
                         console.log(data.Message)

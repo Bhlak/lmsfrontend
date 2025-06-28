@@ -6,7 +6,7 @@ function checkEmail(mail) {
     return re.test(mail);
   }
 
-const ValidateMail = () => {
+const ValidateMail = (email) => {
     if (email === '') {
         // setError(email, "Enter valid email");
         console.log('email false');

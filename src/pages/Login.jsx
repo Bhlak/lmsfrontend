@@ -20,20 +20,20 @@ const Login = () => {
   }
 
   const validateForm = () => {
-    const isValidateUsername = validateUsername();
+    const isValidateUsername = ValidateMail(email);
     const isValidPassword = validatePassword();
 
     return isValidPassword && isValidateUsername;
   };
 
-  const validateUsername = () => {
-    if (username === '') {
-      console.log('write a username');
-      return false;
-    } else {
-      return true;
-    }
-  };
+//   const validateUsername = () => {
+//     if (username === '') {
+//       console.log('write a username');
+//       return false;
+//     } else {
+//       return true;
+//     }
+//   };
 
   const validatePassword = () => {
     if (password.length < 8) {
@@ -50,7 +50,7 @@ const Login = () => {
     };
 
     if (validateForm()) {
-      fetch('http://127.0.0.1:8000/auth/login', {
+      fetch('http://127.0.0.1:8000/auth/login/', {
         headers: {
           'Content-Type': 'application/json',
         },
@@ -64,8 +64,10 @@ const Login = () => {
           // navigate("/producthomepage")
           console.log(data);
 
-          if (data.message === 'Logged In Successfully') {
-            navigate('/producthomepage');
+          if (data.Message === 'User Logged In Successfully') {
+            let token = data.Token;
+            sessionStorage.setItem('Token', token);
+            navigate('/Home');
           } else {
             alert('wrong email or password');
           }
@@ -101,7 +103,6 @@ const Login = () => {
               placeholder="bhlak@gmail.com"
               onChange={(e) => {
                 setEmail(e.target.value);
-                validateMail();
               }}
             />
           </EntryContainer>
@@ -113,7 +114,6 @@ const Login = () => {
               placeholder="Password"
               onChange={(e) => {
                 setPassword(e.target.value);
-                validatePassword();
               }}
             />
           </EntryContainer>
