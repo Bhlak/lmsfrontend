@@ -1,40 +1,39 @@
-import { Navigate, useNavigate} from 'react-router-dom';
-import '../Components/Signup/signup.css';
-import { useState } from 'react';
+import { Navigate, useNavigate } from "react-router-dom";
+import "../Components/Signup/signup.css";
+import { useState } from "react";
 // import SignInSignOut from '../Components/Signup/signInsignOut';
-import ValidateMail from '../Components/Validation/ValidateMail';
-
+import ValidateMail from "../Components/Validation/ValidateMail";
 
 const SignUp = () => {
   const navigate = useNavigate();
   // const location = useLocation()
   // const user = location.state.user
 
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirm, setConfirm] = useState('');
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirm, setConfirm] = useState("");
 
   // State variables for managing form inputs and visibility
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-//   const [address, setAddress] = useState('');
-  const [number, setNumber] = useState('');
-//   const [username, setUsername] = useState('');
-//   const [option, setOption] = useState('');
+  //   const [address, setAddress] = useState('');
+  const [number, setNumber] = useState("");
+  //   const [username, setUsername] = useState('');
+  //   const [option, setOption] = useState('');
   // console.log("user",user);
 
-  let token = sessionStorage.getItem('Token');
-  if (token){
-    return <Navigate to='/Home' replace />
+  let token = sessionStorage.getItem("Token");
+  if (token) {
+    return <Navigate to="/Home" replace />;
   }
 
-//   function checkEmail(mail) {
-//     const re =
-//       /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-//     return re.test(mail);
-//   }
+  //   function checkEmail(mail) {
+  //     const re =
+  //       /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  //     return re.test(mail);
+  //   }
   function checkNumber(number) {
     const re = /^[0-9]{6}-[0-9]{4}$/;
     return re.test(number);
@@ -47,62 +46,59 @@ const SignUp = () => {
   // fullname validation
 
   const validateFirstName = () => {
-    if (firstName === '') {
-      console.log('write a name');
+    if (firstName === "") {
+      console.log("write a name");
       return false;
     } else {
-    //   console.log('valid');
+      //   console.log('valid');
 
       return true;
     }
   };
 
   const validateLastName = () => {
-    if (lastName === '') {
-      console.log('write a name');
+    if (lastName === "") {
+      console.log("write a name");
       return false;
     } else {
-    //   console.log('valid');
+      //   console.log('valid');
 
       return true;
     }
   };
-
-
 
   // number Validation
   const validateNumber = () => {
-    if (number === '') {
-      console.log('write an number');
+    if (number === "") {
+      console.log("write an number");
       return false;
     } else if (!checkNumber(number)) {
-      console.log('wrong');
+      console.log("wrong");
 
       return false;
     } else {
-    //   console.log('valid');
+      //   console.log('valid');
       return true;
     }
   };
 
-
   // Email validation
 
-//   const validateEmail = () => {
-//     if (email === '') {
-//       // setError(email, "Enter valid email");
-//       console.log('email false');
-//       return false;
-//     } else if (!checkEmail(email)) {
-//       // setError(email, "Please enter a valid email address");
-//       console.log('email false');
-//       return false;
-//     } else {
-//       // setSuccess(email);
-//     //   console.log('email true');
-//       return true;
-//     }
-//   };
+  //   const validateEmail = () => {
+  //     if (email === '') {
+  //       // setError(email, "Enter valid email");
+  //       console.log('email false');
+  //       return false;
+  //     } else if (!checkEmail(email)) {
+  //       // setError(email, "Please enter a valid email address");
+  //       console.log('email false');
+  //       return false;
+  //     } else {
+  //       // setSuccess(email);
+  //     //   console.log('email true');
+  //       return true;
+  //     }
+  //   };
 
   // Password Validation
   const validatePassword = () => {
@@ -137,7 +133,7 @@ const SignUp = () => {
     console.log(isValidConfirmPassword);
     const isValidNumber = validateNumber();
     console.log(isValidNumber);
-    
+
     return (
       isValidConfirmPassword &&
       isValidEmail &&
@@ -206,7 +202,6 @@ const SignUp = () => {
             />
           </div>
 
-
           <div className="form">
             <p className="text5">Matric Number</p>
             <input
@@ -221,9 +216,9 @@ const SignUp = () => {
           </div>
           <div className="form">
             <p className="text5">Password</p>
-            <div style={{ position: 'relative' }}>
+            <div style={{ position: "relative" }}>
               <input
-                type={showPassword ? 'text' : 'password'}
+                type={showPassword ? "text" : "password"}
                 id="password"
                 className="details"
                 onChange={(e) => {
@@ -234,19 +229,19 @@ const SignUp = () => {
               />
               <i
                 className={`bx ${
-                  showPassword ? 'bxs-show' : 'bxs-low-vision'
+                  showPassword ? "bxs-show" : "bxs-low-vision"
                 } eye`}
                 onClick={() => setShowPassword((prev) => !prev)}
-                style={{ cursor: 'pointer' }}
+                style={{ cursor: "pointer" }}
               ></i>
             </div>
           </div>
 
           <div className="form">
             <p className="text5">Confirm Password</p>
-            <div style={{ position: 'relative' }}>
+            <div style={{ position: "relative" }}>
               <input
-                type={showConfirmPassword ? 'text' : 'password'}
+                type={showConfirmPassword ? "text" : "password"}
                 id="confPassword"
                 className="details"
                 onChange={(e) => {
@@ -258,10 +253,10 @@ const SignUp = () => {
 
               <i
                 className={`bx ${
-                  showConfirmPassword ? 'bxs-show' : 'bxs-low-vision'
+                  showConfirmPassword ? "bxs-show" : "bxs-low-vision"
                 } eye`}
                 onClick={() => setShowConfirmPassword((prev) => !prev)}
-                style={{ cursor: 'pointer' }}
+                style={{ cursor: "pointer" }}
               ></i>
             </div>
           </div>
@@ -282,11 +277,11 @@ const SignUp = () => {
               };
               if (validateForm()) {
                 // let details = valueRead(user)
-                fetch('http://127.0.0.1:8000/signup/new/', {
+                fetch("http://127.0.0.1:8000/signup/new/", {
                   headers: {
-                    'Content-Type': 'application/json',
+                    "Content-Type": "application/json",
                   },
-                  method: 'POST',
+                  method: "POST",
                   body: JSON.stringify(details),
                 })
                   .then((res) => {
@@ -294,30 +289,31 @@ const SignUp = () => {
                     return res.json();
                   })
                   .then((data) => {
-                    // console.log(data['username'][0]);
                     console.log(data);
                     if (
-                      data.Message === 'User Created And Logged In Successfully'
+                      data.Message === "User Created And Logged In Successfully"
                     ) {
-                        let token = data.Token;
-                        sessionStorage.setItem('Token', token);
-                      navigate('/Home');
-                      // console.log(data)
+                      let token = data.Token;
+                      let user = data.User;
+
+                      sessionStorage.setItem("Token", token);
+                      sessionStorage.setItem("User", user);
+                      navigate("/Home");
                     } else {
-                        console.log(data.Message)
-                      alert('failed');
+                      alert("failed");
                     }
                   })
-                  .catch((error) => console.error('error:', error));
+                  .catch((error) => console.error("error:", error));
               } else {
-                alert('Email or Password is incorrect');
+                alert("Email or Password is incorrect");
               }
             }}
           >
             Continue
           </button>
           <div className="login">
-            Have an account? <a onClick={() => navigate('/Login')}>Login</a>
+            Have an account?{" "}
+            <button onClick={() => navigate("/Login")}>Login</button>
           </div>
         </div>
       </div>

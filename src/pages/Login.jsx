@@ -1,22 +1,22 @@
 // import '../Components/login.css';
 // import LoginPic from '../assets/Login.png';
-import { useState } from 'react';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useState } from "react";
+import { Navigate, useNavigate } from "react-router-dom";
 // import Logo from '../assets/LOGO.png';
 // import SignInSignOut from '../Components/Signup/signInsignOut';
-import styled from 'styled-components';
-import ValidateMail from '../Components/Validation/ValidateMail';
+import styled from "styled-components";
+import ValidateMail from "../Components/Validation/ValidateMail";
 
 const Login = () => {
   const navigate = useNavigate();
-  
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
 
-  let token = sessionStorage.getItem('Token');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  let token = sessionStorage.getItem("Token");
 
   if (token) {
-    return <Navigate to='/Home' replace />;
+    return <Navigate to="/Home" replace />;
   }
 
   const validateForm = () => {
@@ -26,14 +26,14 @@ const Login = () => {
     return isValidPassword && isValidateUsername;
   };
 
-//   const validateUsername = () => {
-//     if (username === '') {
-//       console.log('write a username');
-//       return false;
-//     } else {
-//       return true;
-//     }
-//   };
+  //   const validateUsername = () => {
+  //     if (username === '') {
+  //       console.log('write a username');
+  //       return false;
+  //     } else {
+  //       return true;
+  //     }
+  //   };
 
   const validatePassword = () => {
     if (password.length < 8) {
@@ -49,34 +49,36 @@ const Login = () => {
       password: password,
     };
 
-    if (validateForm()) {
-      fetch('http://127.0.0.1:8000/auth/login/', {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        method: 'POST',
-        body: JSON.stringify(details),
-      })
-        .then((res) => {
-          return res.json();
-        })
-        .then((data) => {
-          // navigate("/producthomepage")
-          console.log(data);
+        if (validateForm()) {
+          fetch("http://127.0.0.1:8000/auth/login/", {
+            headers: {
+              "Content-Type": "application/json",
+            },
+            method: "POST",
+            body: JSON.stringify(details),
+          })
+            .then((res) => {
+              return res.json();
+            })
+            .then((data) => {
+              // navigate("/producthomepage")
+              // console.log(data);
 
-          if (data.Message === 'User Logged In Successfully') {
-            let token = data.Token;
-            sessionStorage.setItem('Token', token);
-            navigate('/Home');
-          } else {
-            alert('wrong email or password');
-          }
-        })
-        .catch((error) => console.error('error:', error));
-    } else {
-      alert('Email or Password is incorrect');
-    }
-  }
+              if (data.Message === "User Logged In Successfully") {
+                let token = data.Token;
+                let user = data.User;
+                sessionStorage.setItem("Token", token);
+                sessionStorage.setItem("User", user);
+                navigate("/Home");
+              } else {
+                alert("wrong email or password");
+              }
+            })
+            .catch((error) => console.error("error:", error));
+        } else {
+          alert("Email or Password is incorrect");
+        }
+      }
 
   return (
     <>
@@ -121,10 +123,10 @@ const Login = () => {
             Login
           </LoginBtn>
           <SignupContainer>
-            Don't have an account?{' '}
+            Don't have an account?{" "}
             <a
-              onClick={() => navigate('/signup')}
-              style={{ textDecoration: 'none', color: '#692b7d' }}
+              onClick={() => navigate("/Signup")}
+              style={{ textDecoration: "none", color: "#692b7d" }}
             >
               Sign up
             </a>
@@ -158,7 +160,7 @@ const LoginText = styled.div`
   width: 100%;
   text-align: center;
   color: #370f43;
-  font-family: 'Quattrocento', serif;
+  font-family: "Quattrocento", serif;
   font-weight: 600;
   font-style: normal;
   font-size: 120%;
@@ -168,7 +170,7 @@ const WBText = styled.div`
   width: 100%;
   text-align: center;
   color: #370f43;
-  font-family: 'Playfair Display', serif;
+  font-family: "Playfair Display", serif;
   font-weight: 500;
   font-style: normal;
   font-size: 180%;
@@ -184,7 +186,7 @@ const GoogleContainer = styled.div`
   background-color: #f5ebfc;
   border-radius: 5px;
   margin-top: 3%;
-  font-family: 'Quattrocento', serif;
+  font-family: "Quattrocento", serif;
   font-weight: 400;
   font-style: normal;
   gap: 2%;
@@ -212,7 +214,7 @@ const EntryContainer = styled.div`
 
 const EntryTitle = styled.p`
   font-size: 90%;
-  font-family: 'Quattrocento', serif;
+  font-family: "Quattrocento", serif;
   font-weight: 600;
   font-style: normal;
   padding-left: 1%;
@@ -226,7 +228,7 @@ const Entry = styled.input`
   border-radius: 5px;
   padding-left: 3%;
   font-size: 70%;
-  font-family: 'Quattrocento', serif;
+  font-family: "Quattrocento", serif;
   font-weight: 500;
   font-style: normal;
 `;
@@ -240,7 +242,7 @@ const LoginBtn = styled.button`
   justify-content: center;
   color: #f9f9f9;
   font-size: 100%;
-  font-family: 'Quattrocento', serif;
+  font-family: "Quattrocento", serif;
   font-weight: 600;
   font-style: normal;
   border-radius: 5px;
@@ -252,7 +254,7 @@ const LoginBtn = styled.button`
 const SignupContainer = styled.div`
   width: fit-content;
   text-align: center;
-  font-family: 'Quattrocento', serif;
+  font-family: "Quattrocento", serif;
   font-weight: 600;
   font-style: normal;
   font-size: 120%;
