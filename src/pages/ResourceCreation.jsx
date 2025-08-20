@@ -19,36 +19,37 @@ const ResourceCreation = () => {
     };
 
     // if (validateForm()) {
-    let token = sessionStorage.getItem("Token");
-    let res = await fetch("https://lms-7czt.onrender.com/books/new/", {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `token ${token}`,
-      },
-      method: "POST",
-      body: JSON.stringify(details),
-    })
-      .then((res) => {
-        return res.json();
-      })
-      .then((data) => {
-        // navigate("/producthomepage")
-        // console.log(data);
+    try {
+      let token = sessionStorage.getItem("Token");
+      let res = await fetch("https://lms-7czt.onrender.com/books/new/", {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `token ${token}`,
+        },
+        method: "POST",
+        body: JSON.stringify(details),
+      });
+      const data = await res.json();
 
-        if (data.Message === "Book Created Successfully") {
-          //   let token = data.Token;
-          //   let user = data.User;
-          //   sessionStorage.setItem("Token", token);
-          //   // console.log(user);
-          //   sessionStorage.setItem("User", JSON.stringify(user));
-          //   window.location.reload();
-          alert(data.Message);
-          navigate("/Home");
-        } else {
-          alert("Book Creation Failed");
-        }
-      })
-      .catch((error) => console.error("error:", error));
+      //   .then((data) => {
+      // navigate("/producthomepage")
+      console.log(data);
+
+      if (data.Message === "Book Created Successfully") {
+        //   let token = data.Token;
+        //   let user = data.User;
+        //   sessionStorage.setItem("Token", token);
+        //   // console.log(user);
+        //   sessionStorage.setItem("User", JSON.stringify(user));
+        //   window.location.reload();
+        alert(data.Message);
+        navigate("/Home");
+      } else {
+        alert("Book Creation Failed");
+      }
+    } catch (error) {
+      console.error("error:", error);
+    }
     // } else {
     //   alert("Email or Password is incorrect");
     // }
