@@ -46,7 +46,7 @@ const ResourceUpdate = () => {
       publisher: publisher,
       year_published: year_published,
     };
-    // console.log(details);
+    console.log(details);
 
     // if (validateForm()) {
     try {

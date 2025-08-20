@@ -101,7 +101,13 @@ const ResourceCreation = () => {
             }}
           />
         </EntryContainer>
-        <CreateBtn type="submit" onClick={() => CreateApi()}>
+        <CreateBtn
+          type="submit"
+          onClick={(e) => {
+            e.preventDefault();
+            CreateApi();
+          }}
+        >
           Create
         </CreateBtn>
       </Content>
@@ -111,17 +117,15 @@ const ResourceCreation = () => {
 };
 
 const HomeContainer = styled.div`
+  //   width: calc(100% - 250px);
   width: 100%;
   height: 95%;
   padding: 20px;
   overflow-y: auto;
-  box-sizing: border-box;
-  // position: absolute;
-  // right: 0;
-  // bottom: 0;
-  position: absolute;
-  right: 0;
-  bottom: 0;
+  box-sizing: -box;
+  //   position: absolute;
+  //   right: 0;
+  //   bottom: 0;
   display: flex;
 `;
 const Content = styled.div`
@@ -130,6 +134,13 @@ const Content = styled.div`
   flex-direction: column;
   align-items: center;
   height: 100vh;
+`;
+
+const ResourceHeader = styled.p`
+  font-family: Quattrocento;
+  font-size: 24px;
+  font-weight: 700;
+  margin-top: 20px;
 `;
 
 const EntryContainer = styled.div`

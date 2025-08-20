@@ -100,6 +100,23 @@
     background-size: 100% 100%;
     background-image: url("https://unpkg.com/@mynaui/icons/icons/book-check.svg");
   }
+  .mynaui--loan {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-image: url("https://unpkg.com/@mynaui/icons/icons/book-open.svg");
+    padding: 0px 5px;
+}
+.mynaui--loan:active {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-image: url("https://unpkg.com/@mynaui/icons/icons/book-open.svg");
+  }
   .bx--category {
     display: inline-block;
     width: 20px;

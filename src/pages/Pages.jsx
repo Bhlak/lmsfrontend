@@ -4,6 +4,7 @@ import BookSearch from "./BookSearch";
 import Resource from "./Resource";
 import ResourceCreation from "./ResourceCreation";
 import ResourceUpdate from "./ResourceUpdate";
+import Loan from "./Loan";
 
 const Pages = ({ query }) => {
   return (
@@ -17,6 +18,7 @@ const Pages = ({ query }) => {
         <Route path={"/Resource"} element={<Resource />} />
         <Route path={"/ResourceCreation"} element={<ResourceCreation />} />
         <Route path={"/ResourceUpdate"} element={<ResourceUpdate />} />
+        <Route path={"/Loan"} element={<Loan />} />
       </Routes>
     </>
   );

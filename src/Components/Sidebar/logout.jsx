@@ -58,6 +58,11 @@ const LogoutBtn = styled.button`
   font-family: "Quattrocento", serif;
   font-weight: 600;
   color: black;
+  &:hover {
+    border-radius: 5px;
+    background-color: #ebd7f7;
+    color: #692b7d;
+  }
 `;
 
 const GearDiv = styled.div`

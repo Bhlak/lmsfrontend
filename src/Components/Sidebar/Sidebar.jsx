@@ -3,6 +3,7 @@ import "./Sidebar.css";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import Logout from "./logout";
+// import Loan from "../Components/Loan"
 import capitalize from "../Capitalize";
 
 const Sidebar = ({ user }) => {
@@ -17,6 +18,9 @@ const Sidebar = ({ user }) => {
             <PageBtn onClick={() => navigate("/Home")}>
               <div className="mynaui--home "></div>Home
             </PageBtn>
+            <PageBtn>
+              <div className="mynaui--book "></div>Account Ban
+            </PageBtn>
             <PageBtn onClick={() => navigate("/ResourceCreation")}>
               <div className="mynaui--book "></div>Resource Creation
             </PageBtn>
@@ -25,22 +29,25 @@ const Sidebar = ({ user }) => {
             </PageBtn> */}
           </div>
         ) : (
-          <div>
+          <div className="actions">
             <PageBtn onClick={() => navigate("/Home")}>
               <div className="mynaui--home "></div>Home
+            </PageBtn>
+            <PageBtn onClick={() => navigate("/Loan")}>
+              <div className="mynaui--loan "></div>Loans
             </PageBtn>
           </div>
         )}
         <div className="actions">
           <Logout></Logout>
-          <a href="#" className="activ">
+          {/* <a href="#" className="activ">
             <div className="lets-icons--setting-line"></div>Settings
           </a>
           <a href="#" className="activ">
             <div className="lucide--messages-square"></div>Support
-          </a>
+          </a> */}
           <ProfileContainer>
-            <Circle />
+            {/* <Circle /> */}
             <Profile>
               {/* <div className="prof">{user.matric_no}</div> */}
               {/* <div className="prof"> */}
