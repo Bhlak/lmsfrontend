@@ -18,8 +18,11 @@ const Sidebar = ({ user }) => {
             <PageBtn onClick={() => navigate("/Home")}>
               <div className="mynaui--home "></div>Home
             </PageBtn>
+            <PageBtn onClick={() => navigate("/Loan")}>
+              <div className="mynaui--loan "></div>Loans
+            </PageBtn>
             <PageBtn>
-              <div className="mynaui--book "></div>Account Ban
+              <div className="mynaui--ban "></div>Account Ban
             </PageBtn>
             <PageBtn onClick={() => navigate("/ResourceCreation")}>
               <div className="mynaui--book "></div>Resource Creation

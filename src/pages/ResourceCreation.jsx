@@ -57,6 +57,7 @@ const ResourceCreation = () => {
 
   return (
     <HomeContainer>
+      <ResourceHeader>Resource Creation</ResourceHeader>
       <Content>
         <EntryContainer>
           <EntryTitle>Title</EntryTitle>
@@ -127,6 +128,7 @@ const HomeContainer = styled.div`
   //   right: 0;
   //   bottom: 0;
   display: flex;
+  flex-direction: column;
 `;
 const Content = styled.div`
   width: 100%;
@@ -137,6 +139,8 @@ const Content = styled.div`
 `;
 
 const ResourceHeader = styled.p`
+  text-align: center;
+  margin-bottom: 10px;
   font-family: Quattrocento;
   font-size: 24px;
   font-weight: 700;

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 import styled from "styled-components";
 import book2 from "../assets/bookImage.jpeg";
@@ -9,7 +9,11 @@ const Resource = () => {
   const navigate = useNavigate();
   const { state } = useLocation();
   const { id, author, title, publisher, year_published, available } = state;
-  console.log(available);
+  const [isStaff, setIsStaff] = useState(
+    JSON.parse(sessionStorage.getItem("User"))["is_staff"]
+  );
+  // let user = sessionStorage.getItem("User");
+  // console.log(isStaff);
 
   const loan = async (id) => {
     let res = await BookLoan(id);
@@ -22,7 +26,7 @@ const Resource = () => {
     }
   };
 
-  return (
+  return isStaff ? (
     <ResourceContainer>
       <Image>
         <img src={book2} alt="" />
@@ -55,6 +59,45 @@ const Resource = () => {
             >
               Update
             </BorrowButton>
+          </div>
+        ) : (
+          <BorrowButton disabled="disabled">Checkout</BorrowButton>
+        )}
+      </Text>
+    </ResourceContainer>
+  ) : (
+    <ResourceContainer>
+      <Image>
+        <img src={book2} alt="" />
+      </Image>
+      <Text>
+        <h4>Title: {title}</h4>
+        <ul>
+          <li>Author: {author}</li>
+          <li>Publisher: {publisher}</li>
+          <li>Year Published: {year_published}</li>
+          <li>Available: {available ? "Yes" : "No"}</li>
+        </ul>
+        {available ? (
+          <div
+            style={{
+              width: "40%",
+              display: "flex",
+              justifyContent: "space-around",
+            }}
+          >
+            <BorrowButton onClick={() => loan(id)}>Checkout</BorrowButton>
+            {/* <BorrowButton
+          onClick={() =>
+            navigate("/ResourceUpdate", {
+              state: {
+                book: { id, title, author, publisher, year_published },
+              },
+            })
+          }
+        >
+          Update
+        </BorrowButton> */}
           </div>
         ) : (
           <BorrowButton disabled="disabled">Checkout</BorrowButton>

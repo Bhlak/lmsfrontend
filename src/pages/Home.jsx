@@ -146,6 +146,7 @@ const ResourceContainer = styled.div`
 `;
 
 const ResourceHeader = styled.p`
+  text-align: center;
   font-family: Quattrocento;
   font-size: 24px;
   font-weight: 700;
