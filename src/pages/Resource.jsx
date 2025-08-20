@@ -36,7 +36,26 @@ const Resource = () => {
           <li>Available: {available ? "Yes" : "No"}</li>
         </ul>
         {available ? (
-          <BorrowButton onClick={() => loan(id)}>Checkout</BorrowButton>
+          <div
+            style={{
+              width: "40%",
+              display: "flex",
+              justifyContent: "space-around",
+            }}
+          >
+            <BorrowButton onClick={() => loan(id)}>Checkout</BorrowButton>
+            <BorrowButton
+              onClick={() =>
+                navigate("/ResourceUpdate", {
+                  state: {
+                    book: { id, title, author, publisher, year_published },
+                  },
+                })
+              }
+            >
+              Update
+            </BorrowButton>
+          </div>
         ) : (
           <BorrowButton disabled="disabled">Checkout</BorrowButton>
         )}

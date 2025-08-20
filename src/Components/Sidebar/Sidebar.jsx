@@ -12,16 +12,25 @@ const Sidebar = ({ user }) => {
   return (
     <SideContainer>
       <div className="acting">
-        <div className="actions">
-          <PageBtn onClick={() => navigate("/Home")}>
-            <div className="mynaui--home "></div>Home
-          </PageBtn>
-          {user.is_staff ? (
+        {user.is_staff ? (
+          <div className="actions">
+            <PageBtn onClick={() => navigate("/Home")}>
+              <div className="mynaui--home "></div>Home
+            </PageBtn>
             <PageBtn onClick={() => navigate("/ResourceCreation")}>
               <div className="mynaui--book "></div>Resource Creation
             </PageBtn>
-          ) : null}
-        </div>
+            {/* <PageBtn onClick={() => navigate("/ResourceUpdate")}>
+              <div className="mynaui--book "></div>Resource Update
+            </PageBtn> */}
+          </div>
+        ) : (
+          <div>
+            <PageBtn onClick={() => navigate("/Home")}>
+              <div className="mynaui--home "></div>Home
+            </PageBtn>
+          </div>
+        )}
         <div className="actions">
           <Logout></Logout>
           <a href="#" className="activ">

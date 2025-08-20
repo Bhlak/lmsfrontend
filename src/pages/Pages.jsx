@@ -3,6 +3,7 @@ import Home from "./Home";
 import BookSearch from "./BookSearch";
 import Resource from "./Resource";
 import ResourceCreation from "./ResourceCreation";
+import ResourceUpdate from "./ResourceUpdate";
 
 const Pages = ({ query }) => {
   return (
@@ -15,6 +16,7 @@ const Pages = ({ query }) => {
         {/* <Route path={"/Search"} element={<BookSearch />} /> */}
         <Route path={"/Resource"} element={<Resource />} />
         <Route path={"/ResourceCreation"} element={<ResourceCreation />} />
+        <Route path={"/ResourceUpdate"} element={<ResourceUpdate />} />
       </Routes>
     </>
   );
