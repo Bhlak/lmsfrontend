@@ -13,11 +13,11 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  let token = sessionStorage.getItem("Token");
+  // let token = sessionStorage.getItem("Token");
 
-  if (token) {
-    return <Navigate to="/Home" replace />;
-  }
+  // if (token) {
+  //   return <Navigate to="/Home" replace />;
+  // }
 
   const validateForm = () => {
     const isValidateUsername = ValidateMail(email);
@@ -49,36 +49,37 @@ const Login = () => {
       password: password,
     };
 
-        if (validateForm()) {
-          fetch("http://127.0.0.1:8000/auth/login/", {
-            headers: {
-              "Content-Type": "application/json",
-            },
-            method: "POST",
-            body: JSON.stringify(details),
-          })
-            .then((res) => {
-              return res.json();
-            })
-            .then((data) => {
-              // navigate("/producthomepage")
-              // console.log(data);
+    if (validateForm()) {
+      fetch("http://127.0.0.1:8000/auth/login/", {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        method: "POST",
+        body: JSON.stringify(details),
+      })
+        .then((res) => {
+          return res.json();
+        })
+        .then((data) => {
+          // navigate("/producthomepage")
+          // console.log(data);
 
-              if (data.Message === "User Logged In Successfully") {
-                let token = data.Token;
-                let user = data.User;
-                sessionStorage.setItem("Token", token);
-                sessionStorage.setItem("User", user);
-                navigate("/Home");
-              } else {
-                alert("wrong email or password");
-              }
-            })
-            .catch((error) => console.error("error:", error));
-        } else {
-          alert("Email or Password is incorrect");
-        }
-      }
+          if (data.Message === "User Logged In Successfully") {
+            let token = data.Token;
+            let user = data.User;
+            sessionStorage.setItem("Token", token);
+            // console.log(user);
+            sessionStorage.setItem("User", JSON.stringify(user));
+            window.location.reload();
+          } else {
+            alert("wrong email or password");
+          }
+        })
+        .catch((error) => console.error("error:", error));
+    } else {
+      alert("Email or Password is incorrect");
+    }
+  }
 
   return (
     <>

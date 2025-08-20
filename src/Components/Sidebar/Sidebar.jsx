@@ -3,26 +3,27 @@ import "./Sidebar.css";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import Logout from "./logout";
+import capitalize from "../Capitalize";
 
 const Sidebar = ({ user }) => {
   const navigate = useNavigate();
 
   return (
-    <div className="sidepiece">
+    <SideContainer>
       <div className="acting">
         <div className="actions">
-          <a className="activ">
+          <PageBtn onClick={() => navigate("/Home")}>
             <div className="mynaui--home "></div>Home
-          </a>
-          <a className="activ">
-            <div className="bx--category"></div>Catergories
-          </a>
+          </PageBtn>
+          <PageBtn>
+            <div className="bx--category"></div>Categories
+          </PageBtn>
           <PageBtn onClick={() => navigate("/Search")}>
             <div className="gg--shopping-cart"></div>Book Search
           </PageBtn>
-          <a href="#" className="activ">
+          <PageBtn>
             <div className="wi--time-4"></div>Order History
-          </a>
+          </PageBtn>
         </div>
         <div className="actions">
           <Logout></Logout>
@@ -32,19 +33,32 @@ const Sidebar = ({ user }) => {
           <a href="#" className="activ">
             <div className="lucide--messages-square"></div>Support
           </a>
-          <div className="profiling">
-            {/* <div className="prof">{user.matric_no}</div> */}
-            <div className="prof">
-              {user ? (
+          <ProfileContainer>
+            <Circle />
+            <Profile>
+              {/* <div className="prof">{user.matric_no}</div> */}
+              {/* <div className="prof"> */}
+              {/* {user ? (
                 <p>{user.firstname + " " + user.lastname}</p>
               ) : (
                 <LoginBtn onClick={() => navigate("/Login")}>Login</LoginBtn>
-              )}
-            </div>
-          </div>
+              )} */}
+              <p
+                style={{
+                  // width: "100%",
+                  fontFamily: "Quattrocento",
+                  fontWeight: "600",
+                  // color: "black",
+                }}
+              >
+                {capitalize(user.firstname) + " " + capitalize(user.lastname)}
+              </p>
+              {/* </div> */}
+            </Profile>
+          </ProfileContainer>
         </div>
       </div>
-    </div>
+    </SideContainer>
   );
 };
 export default Sidebar;
@@ -60,6 +74,13 @@ const PageBtn = styled.button`
   font-family: "Quattrocento", serif;
   font-weight: 600;
   color: black;
+
+  &:hover {
+    border-radius: 5px;
+    border: none;
+    background-color: #ebd7f7;
+    color: #692b7d;
+  }
 `;
 
 const LoginBtn = styled.button`
@@ -67,4 +88,46 @@ const LoginBtn = styled.button`
   height: 100%;
   border: none;
   background: none;
+`;
+
+const SideContainer = styled.div`
+  width: 100%;
+  padding-top: 40%;
+  border: 1px solid #d3d3d3;
+  box-sizing: border-box;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  position: sticky;
+  top: 0;
+`;
+
+const ProfileContainer = styled.div`
+  background-color: #ebd7f7;
+  width: 100%;
+  border-radius: 12px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0.4rem;
+  box-sizing: border-box;
+`;
+
+const Circle = styled.div`
+  background-color: lightgrey;
+  width: 50px;
+  height: 50px;
+  background-color: #ffff;
+  border-radius: 50%;
+`;
+
+const Profile = styled.div`
+  // width: 80%;
+  padding: 0 0.4rem;
+  height: 40px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-radius: 20%;
 `;

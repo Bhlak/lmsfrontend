@@ -1,25 +1,38 @@
 // import { useState } from 'react';
 import "./App.css";
 import Pages from "./pages/Pages.jsx";
+import AuthPages from "./pages/AuthPages.jsx";
 import { BrowserRouter as Router } from "react-router-dom";
 import Sidebar from "./Components/Sidebar/Sidebar.jsx";
 import Navbar from "./Components/Navbar/Navbar.jsx";
 import styled from "styled-components";
+import { useState } from "react";
 
 function App() {
   // const [count, setCount] = useState(0);
+  const [token, setToken] = useState(sessionStorage.getItem("Token"));
+  const [user, setUser] = useState(JSON.parse(sessionStorage.getItem("User")));
+  const [query, setQuery] = useState("");
+
+  // console.log(token);
 
   return (
     <Router>
-      <PageContainer>
-        <div style={{ width: "20%" }}>
-          <Sidebar />
-        </div>
-        <div style={{ width: "80%" }}>
-          <Navbar />
-          <Pages />
-        </div>
-      </PageContainer>
+      {token ? (
+        <PageContainer>
+          <div style={{ width: "15%" }}>
+            <Sidebar user={user} />
+          </div>
+          <BodyContainer>
+            <Navbar user={user} setQuery={setQuery} />
+            <Pages query={query} />
+          </BodyContainer>
+        </PageContainer>
+      ) : (
+        <PageContainer>
+          <AuthPages />
+        </PageContainer>
+      )}
     </Router>
   );
 }
@@ -27,9 +40,20 @@ function App() {
 export default App;
 
 const PageContainer = styled.div`
-  width: 100%;
-  height: 100%;
+  max-width: 100vw;
+  height: 100vh;
   /* border: 1px solid yellow; */
   display: flex;
-  justify-content: space-between;
+  // justify-content: space-between;
+  box-sizing: content-box;
+`;
+
+const BodyContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 85%;
+  min-height: 100%;
+  // position: absolute;
+  // bottom: 0;
+  // right: 0;
 `;

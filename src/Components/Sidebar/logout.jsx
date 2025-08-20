@@ -11,7 +11,7 @@ const Logout = () => {
       fetch("http://127.0.0.1:8000/auth/logout/", {
         headers: {
           "Content-Type": "application/json",
-          Authorization: `token ${token}`,  
+          Authorization: `token ${token}`,
         },
         method: "GET",
       })
@@ -25,7 +25,8 @@ const Logout = () => {
           if (data.Message === "User Logged Out Successfully") {
             sessionStorage.removeItem("Token");
             sessionStorage.removeItem("User");
-            navigate("/Home");
+            sessionStorage.removeItem("Books");
+            window.location.reload(); 
           } else {
             console.log("Error Logging User Out");
           }

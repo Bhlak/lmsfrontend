@@ -5,14 +5,7 @@ import Navbar from "../Components/Navbar/Navbar";
 const BookSearch = () => {
   const [user, setUser] = useState("");
 
-  
-
-  return (
-    <>
-      <Navbar />
-      <Sidebar />
-    </>
-  );
+  return <></>;
 };
 
 export default BookSearch;

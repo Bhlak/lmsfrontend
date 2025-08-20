@@ -273,7 +273,7 @@ const SignUp = () => {
                 lastname: lastName,
                 email: email,
                 password: password,
-                phone_no: number,
+                matric_no: number,
               };
               if (validateForm()) {
                 // let details = valueRead(user)
@@ -297,8 +297,8 @@ const SignUp = () => {
                       let user = data.User;
 
                       sessionStorage.setItem("Token", token);
-                      sessionStorage.setItem("User", user);
-                      navigate("/Home");
+                      sessionStorage.setItem("User", JSON.stringify(user));
+                      window.location.reload();
                     } else {
                       alert("failed");
                     }
