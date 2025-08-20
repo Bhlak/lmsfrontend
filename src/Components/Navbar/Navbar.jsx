@@ -8,11 +8,12 @@ function Navbar({ user, setQuery }) {
   // const [query, setQuery] = useState("");
   // const [fetchedBooks, setFetchedBooks] = useState({});
 
-  const fetchBooks = async (query = "") => {
+  const fetchBooks = async (query = null) => {
+    // console.log("Fetching");
     try {
       let token = sessionStorage.getItem("Token");
       const res = await fetch(
-        `http://127.0.0.1:8000/books/search/?search=${query}`,
+        `https://lms-7czt.onrender.com/books/search/?search=""`,
         {
           headers: {
             "Content-Type": "application/json",

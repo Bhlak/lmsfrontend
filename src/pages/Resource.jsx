@@ -16,6 +16,8 @@ const Resource = () => {
     // console.log(res);
     if (res.Message === "Loan Created Successfully") {
       window.dispatchEvent(new Event("bookUpdate"));
+      alert("Loan Created Successfully");
+      sessionStorage.removeItem("Books");
       navigate("/Home", { state: { alert: res.Message } });
     }
   };

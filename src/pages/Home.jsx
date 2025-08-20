@@ -18,14 +18,14 @@ const Home = ({ query = null }) => {
 
   useEffect(() => {
     getBooks(query);
-    if (state?.alert) {
-      console.log("Here", state.alert);
-      alert(state.alert);
-      // state.alert = undefined;
-      // console.log("Also", state.alert);
-      navigate("/Home", { replace: true, state: undefined });
-      // setResources(JSON.parse(sessionStorage.getItem("Books")));
-    }
+    // if (state?.alert) {
+    //   console.log("Here", state.alert);
+    //   alert(state.alert);
+    //   // state.alert = undefined;
+    //   // console.log("Also", state.alert);
+    //   navigate("/Home", { replace: true, state: undefined });
+    //   // setResources(JSON.parse(sessionStorage.getItem("Books")));
+    // }
     // if (state?.alert) {
     //   return undefined;
     // }

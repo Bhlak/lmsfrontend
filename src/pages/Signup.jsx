@@ -277,7 +277,7 @@ const SignUp = () => {
               };
               if (validateForm()) {
                 // let details = valueRead(user)
-                fetch("http://127.0.0.1:8000/signup/new/", {
+                fetch("https://lms-7czt.onrender.com/signup/new/", {
                   headers: {
                     "Content-Type": "application/json",
                   },

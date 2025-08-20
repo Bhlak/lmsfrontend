@@ -3,13 +3,16 @@ const BookLoan = (id) => {
   const fetchLoan = async (id) => {
     try {
       let token = sessionStorage.getItem("Token");
-      const res = await fetch(`http://127.0.0.1:8000/books/loan/${id}/`, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `token ${token}`,
-        },
-        method: "POST",
-      });
+      const res = await fetch(
+        `https://lms-7czt.onrender.com/books/loan/${id}/`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `token ${token}`,
+          },
+          method: "POST",
+        }
+      );
 
       const data = await res.json();
       // console.log(data);

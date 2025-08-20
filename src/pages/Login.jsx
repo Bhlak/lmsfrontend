@@ -50,7 +50,7 @@ const Login = () => {
     };
 
     if (validateForm()) {
-      fetch("http://127.0.0.1:8000/auth/login/", {
+      fetch("https://lms-7czt.onrender.com/auth/login/", {
         headers: {
           "Content-Type": "application/json",
         },

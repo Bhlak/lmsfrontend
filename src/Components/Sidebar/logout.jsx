@@ -8,7 +8,7 @@ const Logout = () => {
 
   const logout = () => {
     if (token) {
-      fetch("http://127.0.0.1:8000/auth/logout/", {
+      fetch("https://lms-7czt.onrender.com/auth/logout/", {
         headers: {
           "Content-Type": "application/json",
           Authorization: `token ${token}`,
@@ -26,7 +26,7 @@ const Logout = () => {
             sessionStorage.removeItem("Token");
             sessionStorage.removeItem("User");
             sessionStorage.removeItem("Books");
-            window.location.reload(); 
+            window.location.reload();
           } else {
             console.log("Error Logging User Out");
           }
