@@ -17,7 +17,7 @@ function App() {
   // console.log(token);
 
   return (
-    <Router>
+    <Router basename={process.env.PUBLIC_URL}>
       {token ? (
         <PageContainer>
           <div style={{ width: "15%" }}>
