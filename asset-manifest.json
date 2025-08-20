@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/lmsfrontend/static/css/main.fcd6ee3f.css",
+    "main.js": "/lmsfrontend/static/js/main.6ca00440.js",
+    "static/js/453.0212d502.chunk.js": "/lmsfrontend/static/js/453.0212d502.chunk.js",
+    "index.html": "/lmsfrontend/index.html",
+    "main.fcd6ee3f.css.map": "/lmsfrontend/static/css/main.fcd6ee3f.css.map",
+    "main.6ca00440.js.map": "/lmsfrontend/static/js/main.6ca00440.js.map",
+    "453.0212d502.chunk.js.map": "/lmsfrontend/static/js/453.0212d502.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.fcd6ee3f.css",
+    "static/js/main.6ca00440.js"
+  ]
+}
