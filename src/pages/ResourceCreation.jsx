@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const ResourceCreation = () => {
@@ -8,6 +9,7 @@ const ResourceCreation = () => {
   const [year_published, setYear] = useState("");
 
   const CreateApi = async () => {
+    const navigate = useNavigate();
     let temp = `${year_published}-01-01`;
     const details = {
       title: title,
@@ -33,15 +35,17 @@ const ResourceCreation = () => {
         // navigate("/producthomepage")
         // console.log(data);
 
-        if (data.Message === "User Logged In Successfully") {
-          let token = data.Token;
-          let user = data.User;
-          sessionStorage.setItem("Token", token);
-          // console.log(user);
-          sessionStorage.setItem("User", JSON.stringify(user));
-          window.location.reload();
+        if (data.Message === "Book Created Successfully") {
+          //   let token = data.Token;
+          //   let user = data.User;
+          //   sessionStorage.setItem("Token", token);
+          //   // console.log(user);
+          //   sessionStorage.setItem("User", JSON.stringify(user));
+          //   window.location.reload();
+          alert(data.Message);
+          navigate("/Home");
         } else {
-          alert("wrong email or password");
+          alert("Book Creation Failed");
         }
       })
       .catch((error) => console.error("error:", error));
