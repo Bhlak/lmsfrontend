@@ -7,6 +7,7 @@ import capitalize from "../Capitalize";
 
 const Sidebar = ({ user }) => {
   const navigate = useNavigate();
+  console.log(user);
 
   return (
     <SideContainer>
@@ -15,15 +16,11 @@ const Sidebar = ({ user }) => {
           <PageBtn onClick={() => navigate("/Home")}>
             <div className="mynaui--home "></div>Home
           </PageBtn>
-          <PageBtn>
-            <div className="bx--category"></div>Categories
-          </PageBtn>
-          <PageBtn onClick={() => navigate("/Search")}>
-            <div className="gg--shopping-cart"></div>Book Search
-          </PageBtn>
-          <PageBtn>
-            <div className="wi--time-4"></div>Order History
-          </PageBtn>
+          {user.is_staff ? (
+            <PageBtn onClick={() => navigate("/ResourceCreation")}>
+              <div className="mynaui--book "></div>Resource Creation
+            </PageBtn>
+          ) : null}
         </div>
         <div className="actions">
           <Logout></Logout>

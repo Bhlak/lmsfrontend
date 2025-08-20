@@ -48,7 +48,11 @@ const Home = ({ query = null }) => {
       return resources;
     }
     return resources.filter(
-      (book) => book.title.includes(query) || book.author.includes(query)
+      (book) =>
+        book.title.includes(query) ||
+        book.author.includes(query) ||
+        book.publisher.includes(query) ||
+        book.year_published.includes(query)
     );
   };
 

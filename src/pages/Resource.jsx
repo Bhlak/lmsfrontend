@@ -32,6 +32,7 @@ const Resource = () => {
         <ul>
           <li>Author: {author}</li>
           <li>Publisher: {publisher}</li>
+          <li>Year Published: {year_published}</li>
           <li>Available: {available ? "Yes" : "No"}</li>
         </ul>
         {available ? (
