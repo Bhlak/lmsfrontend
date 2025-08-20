@@ -7,9 +7,9 @@ const ResourceCreation = () => {
   const [author, setAuthor] = useState("");
   const [publisher, setPublisher] = useState("");
   const [year_published, setYear] = useState("");
+  const navigate = useNavigate();
 
   const CreateApi = async () => {
-    const navigate = useNavigate();
     let temp = `${year_published}-01-01`;
     const details = {
       title: title,
