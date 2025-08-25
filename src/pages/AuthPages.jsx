@@ -10,7 +10,17 @@ const AuthPages = () => {
         <Route path={"/Signup"} element={<Signup />} />
         <Route path={"/Login"} element={<Login />} />
         <Route path={"/Home"} element={<Navigate replace to="/Login" />} />
-        <Route path={"/Search"} element={<Navigate replace to="/Login" />} />
+        <Route path={"/Resource"} element={<Navigate replace to="/Login" />} />
+        <Route
+          path={"/ResourceCreation"}
+          element={<Navigate replace to="/Login" />}
+        />
+        <Route
+          path={"/ResourceUpdate"}
+          element={<Navigate replace to="/Login" />}
+        />
+        <Route path={"/Loan"} element={<Navigate replace to="/Login" />} />
+        <Route path={"/Ban"} element={<Navigate replace to="/Login" />} />
       </Routes>
     </>
   );

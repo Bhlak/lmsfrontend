@@ -1,4 +1,3 @@
-// import { useState } from 'react';
 import "./App.css";
 import Pages from "./pages/Pages.jsx";
 import AuthPages from "./pages/AuthPages.jsx";
@@ -9,12 +8,13 @@ import styled from "styled-components";
 import { useState } from "react";
 
 function App() {
-  // const [count, setCount] = useState(0);
   const [token, setToken] = useState(sessionStorage.getItem("Token"));
-  const [user, setUser] = useState(JSON.parse(sessionStorage.getItem("User")));
+  const [user, setUser] = useState(
+    sessionStorage.getItem("User")
+      ? JSON.parse(sessionStorage.getItem("User"))
+      : null
+  );
   const [query, setQuery] = useState("");
-
-  // console.log(token);
 
   return (
     <Router basename={process.env.PUBLIC_URL}>
@@ -42,9 +42,7 @@ export default App;
 const PageContainer = styled.div`
   max-width: 100vw;
   height: 100vh;
-  /* border: 1px solid yellow; */
   display: flex;
-  // justify-content: space-between;
   box-sizing: content-box;
 `;
 
@@ -53,7 +51,4 @@ const BodyContainer = styled.div`
   flex-direction: column;
   width: 85%;
   min-height: 100%;
-  // position: absolute;
-  // bottom: 0;
-  // right: 0;
 `;

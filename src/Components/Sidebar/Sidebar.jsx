@@ -8,7 +8,7 @@ import capitalize from "../Capitalize";
 
 const Sidebar = ({ user }) => {
   const navigate = useNavigate();
-  console.log(user);
+  // console.log(user);
 
   return (
     <SideContainer>
@@ -21,7 +21,7 @@ const Sidebar = ({ user }) => {
             <PageBtn onClick={() => navigate("/Loan")}>
               <div className="mynaui--loan "></div>Loans
             </PageBtn>
-            <PageBtn>
+            <PageBtn onClick={() => navigate("/Ban")}>
               <div className="mynaui--ban "></div>Account Ban
             </PageBtn>
             <PageBtn onClick={() => navigate("/ResourceCreation")}>
@@ -122,7 +122,7 @@ const SideContainer = styled.div`
 const ProfileContainer = styled.div`
   background-color: #ebd7f7;
   width: 100%;
-  border-radius: 12px;
+  // border-radius: 12px;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -145,5 +145,5 @@ const Profile = styled.div`
   display: flex;
   justify-content: space-around;
   align-items: center;
-  border-radius: 20%;
+  // border-radius: 20%;
 `;

@@ -173,6 +173,7 @@
     flex-direction: column;
     justify-content: space-around;
     height: 10%;
+    /* margin: 0; */
     margin-bottom: 5px;
     /* border: 1px solid red; */
   

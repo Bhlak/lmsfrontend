@@ -46,9 +46,7 @@ const ResourceUpdate = () => {
       publisher: publisher,
       year_published: year_published,
     };
-    console.log(details);
 
-    // if (validateForm()) {
     try {
       let token = sessionStorage.getItem("Token");
       let res = await fetch(`https://lms-7czt.onrender.com/books/book/${id}/`, {
@@ -61,17 +59,7 @@ const ResourceUpdate = () => {
       });
       const data = await res.json();
 
-      //   .then((data) => {
-      // navigate("/producthomepage")
-      console.log(data);
-
       if (data.Message === "Book Updated Successfully") {
-        //   let token = data.Token;
-        //   let user = data.User;
-        //   sessionStorage.setItem("Token", token);
-        //   // console.log(user);
-        //   sessionStorage.setItem("User", JSON.stringify(user));
-        //   window.location.reload();
         alert(data.Message);
         navigate("/Home");
       } else {
@@ -80,71 +68,11 @@ const ResourceUpdate = () => {
     } catch (error) {
       console.error("error:", error);
     }
-    // } else {
-    //   alert("Email or Password is incorrect");
-    // }
   };
 
-  //   const getBooks = (query = null) => {
-  //     if (!resources && sessionStorage.getItem("Books")) {
-  //       setResources(JSON.parse(sessionStorage.getItem("Books")));
-  //     }
-  //     if (!query) {
-  //       // console.log("Here", resources);
-  //       // console.log("res", sessionStorage.getItem("Books"));
-  //       return resources;
-  //     }
-  //     return resources.filter(
-  //       (book) =>
-  //         book.title.includes(query) ||
-  //         book.author.includes(query) ||
-  //         book.publisher.includes(query) ||
-  //         book.year_published.includes(query)
-  //     );
-  //   };
-
-  //   const filteredResources = getBooks(query);
-
-  //   return (
-  //     <HomeContainer>
-  //       <ResourceContainer>
-  //         <ResourceHeader>All Resources</ResourceHeader>
-  //         <ResourceDisplay>
-  //           <CardContainer>
-  //             {resources.map((book) => {
-  //               return (
-  //                 <Card
-  //                   key={book.id}
-  //                   onClick={() => navigate("/Resource", { state: book.id })}
-  //                 >
-  //                   <img
-  //                     src={bookImage}
-  //                     alt=""
-  //                     style={{
-  //                       // width: "100%",
-  //                       height: "auto",
-  //                       // maxHeight: "150px",
-  //                       // objectFit: "cover",
-  //                       borderRadius: "10px",
-  //                     }}
-  //                   />
-  //                   <Details>
-  //                     <Text>{book.title}</Text>
-  //                     <Text>{book.author}</Text>
-  //                   </Details>
-  //                 </Card>
-  //               );
-  //             })}
-  //           </CardContainer>
-  //         </ResourceDisplay>
-  //       </ResourceContainer>
-  //       {/* </HomeContainer> */}
-  //     </HomeContainer>
-  //   );
   return (
     <HomeContainer>
       <Content>
-        {/* {console.log(state)} */}
         {id}
         <EntryContainer>
           <EntryTitle>Title</EntryTitle>

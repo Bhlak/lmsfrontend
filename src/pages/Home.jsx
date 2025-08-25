@@ -1,38 +1,20 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-// import Navbar from "../Components/Navbar/Navbar";
-// import Sidebar from "../Components/Sidebar/Sidebar";
 import bookImage from "../assets/bookImage.jpeg";
-import { Navigate, useNavigate } from "react-router-dom";
-import { useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Home = ({ query = null }) => {
   const navigate = useNavigate();
-  const location = useLocation();
-  const { state } = useLocation();
 
-  // const [user, setUser] = useState(JSON.parse(sessionStorage.getItem("User")));
   const [resources, setResources] = useState(
     JSON.parse(sessionStorage.getItem("Books"))
   );
 
   useEffect(() => {
     getBooks(query);
-    // if (state?.alert) {
-    //   console.log("Here", state.alert);
-    //   alert(state.alert);
-    //   // state.alert = undefined;
-    //   // console.log("Also", state.alert);
-    //   navigate("/Home", { replace: true, state: undefined });
-    //   // setResources(JSON.parse(sessionStorage.getItem("Books")));
-    // }
-    // if (state?.alert) {
-    //   return undefined;
-    // }
+
     const handleStorage = () => {
-      // console.log("Handling storage");
       setResources(JSON.parse(sessionStorage.getItem("Books")));
-      // console.log(resources);
     };
 
     window.addEventListener("bookStorage", handleStorage);
@@ -43,8 +25,6 @@ const Home = ({ query = null }) => {
       setResources(JSON.parse(sessionStorage.getItem("Books")));
     }
     if (!query) {
-      // console.log("Here", resources);
-      // console.log("res", sessionStorage.getItem("Books"));
       return resources;
     }
     return resources.filter(
@@ -57,33 +37,7 @@ const Home = ({ query = null }) => {
   };
 
   const filteredResources = getBooks(query);
-  // const [filteredResources, setFilteredResources] = useState(getBooks(query));
 
-  // console.log(filteredResources);
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       let token = sessionStorage.getItem("Token");
-  //       const res = await fetch("http://127.0.0.1:8000/auth/user/", {
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //           Authorization: `token ${token}`,
-  //         },
-  //         method: "GET",
-  //       });
-
-  //       const data = await res.json();
-  //       // console.log(data)
-  //       setUser(data.Data);
-  //       // console.log(data)
-  //     } catch (e) {
-  //       console.log(e);
-  //     }
-  //   };
-  //   fetchData();
-  // }, []);
-
-  console.log("Hereee", filteredResources);
   return filteredResources ? (
     <HomeContainer>
       <ResourceContainer>
@@ -100,10 +54,7 @@ const Home = ({ query = null }) => {
                     src={bookImage}
                     alt=""
                     style={{
-                      // width: "100%",
                       height: "auto",
-                      // maxHeight: "150px",
-                      // objectFit: "cover",
                       borderRadius: "10px",
                     }}
                   />

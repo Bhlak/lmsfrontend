@@ -62,8 +62,8 @@ function Navbar({ user, setQuery }) {
           placeholder="Search"
           onChange={(e) => setQuery(e.target.value)}
         />
-        <div className="gg--shopping-cart"></div>
-        <div className="mage--notification-bell"></div>
+        {/* <div className="gg--shopping-cart"></div>
+        <div className="mage--notification-bell"></div> */}
       </div>
     </NavBar>
   );

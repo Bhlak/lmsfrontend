@@ -1,13 +1,10 @@
 import { Navigate, useNavigate } from "react-router-dom";
 import "../Components/Signup/signup.css";
 import { useState } from "react";
-// import SignInSignOut from '../Components/Signup/signInsignOut';
 import ValidateMail from "../Components/Validation/ValidateMail";
 
 const SignUp = () => {
   const navigate = useNavigate();
-  // const location = useLocation()
-  // const user = location.state.user
 
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -15,43 +12,25 @@ const SignUp = () => {
   const [password, setPassword] = useState("");
   const [confirm, setConfirm] = useState("");
 
-  // State variables for managing form inputs and visibility
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  //   const [address, setAddress] = useState('');
   const [number, setNumber] = useState("");
-  //   const [username, setUsername] = useState('');
-  //   const [option, setOption] = useState('');
-  // console.log("user",user);
 
   let token = sessionStorage.getItem("Token");
   if (token) {
     return <Navigate to="/Home" replace />;
   }
 
-  //   function checkEmail(mail) {
-  //     const re =
-  //       /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  //     return re.test(mail);
-  //   }
   function checkNumber(number) {
     const re = /^[0-9]{6}-[0-9]{4}$/;
     return re.test(number);
   }
-
-  // let param =useParams()
-
-  // console.log("param",param);
-
-  // fullname validation
 
   const validateFirstName = () => {
     if (firstName === "") {
       console.log("write a name");
       return false;
     } else {
-      //   console.log('valid');
-
       return true;
     }
   };
@@ -61,8 +40,6 @@ const SignUp = () => {
       console.log("write a name");
       return false;
     } else {
-      //   console.log('valid');
-
       return true;
     }
   };
@@ -82,25 +59,6 @@ const SignUp = () => {
     }
   };
 
-  // Email validation
-
-  //   const validateEmail = () => {
-  //     if (email === '') {
-  //       // setError(email, "Enter valid email");
-  //       console.log('email false');
-  //       return false;
-  //     } else if (!checkEmail(email)) {
-  //       // setError(email, "Please enter a valid email address");
-  //       console.log('email false');
-  //       return false;
-  //     } else {
-  //       // setSuccess(email);
-  //     //   console.log('email true');
-  //       return true;
-  //     }
-  //   };
-
-  // Password Validation
   const validatePassword = () => {
     if (password.length < 8) {
       return false;
@@ -115,10 +73,6 @@ const SignUp = () => {
       return false;
     }
   };
-
-  //State Validation
-
-  // Form Validation
 
   function validateForm() {
     const isValidEmail = ValidateMail(email);
@@ -147,15 +101,9 @@ const SignUp = () => {
   return (
     <>
       <div className="container">
-        {/* <SignInSignOut /> */}
-
         <div className="content">
-          <div className="text3">SIGN UP</div>
-          <div className="text4">Create an account</div>
-          <div className="or">
-            <hr />
-            or
-            <hr />
+          <div className="text4" style={{ margin: "20px 0" }}>
+            Create an account
           </div>
 
           <div className="form">
@@ -168,7 +116,7 @@ const SignUp = () => {
                 setEmail(e.target.value);
                 ValidateMail(email);
               }}
-              placeholder="jeffdan@gmail.com"
+              placeholder="mail@gmail.com"
             />
           </div>
 
@@ -183,7 +131,7 @@ const SignUp = () => {
                 validateFirstName();
               }}
               className="details"
-              placeholder="Name"
+              placeholder="John"
             />
           </div>
 
@@ -198,7 +146,7 @@ const SignUp = () => {
                 validateLastName();
               }}
               className="details"
-              placeholder="Name"
+              placeholder="Doe"
             />
           </div>
 
@@ -208,6 +156,7 @@ const SignUp = () => {
               type="text"
               id="number"
               className="details"
+              placeholder="200300-2871"
               onChange={(e) => {
                 setNumber(e.target.value);
                 validateNumber();
@@ -313,7 +262,12 @@ const SignUp = () => {
           </button>
           <div className="login">
             Have an account?{" "}
-            <button onClick={() => navigate("/Login")}>Login</button>
+            <a
+              onClick={() => navigate("/Login")}
+              style={{ textDecoration: "none", color: "#692b7d" }}
+            >
+              Login
+            </a>
           </div>
         </div>
       </div>

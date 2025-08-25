@@ -1,9 +1,5 @@
-// import '../Components/login.css';
-// import LoginPic from '../assets/Login.png';
 import { useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
-// import Logo from '../assets/LOGO.png';
-// import SignInSignOut from '../Components/Signup/signInsignOut';
 import styled from "styled-components";
 import ValidateMail from "../Components/Validation/ValidateMail";
 
@@ -13,27 +9,12 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  // let token = sessionStorage.getItem("Token");
-
-  // if (token) {
-  //   return <Navigate to="/Home" replace />;
-  // }
-
   const validateForm = () => {
     const isValidateUsername = ValidateMail(email);
     const isValidPassword = validatePassword();
 
     return isValidPassword && isValidateUsername;
   };
-
-  //   const validateUsername = () => {
-  //     if (username === '') {
-  //       console.log('write a username');
-  //       return false;
-  //     } else {
-  //       return true;
-  //     }
-  //   };
 
   const validatePassword = () => {
     if (password.length < 8) {
@@ -61,18 +42,14 @@ const Login = () => {
           return res.json();
         })
         .then((data) => {
-          // navigate("/producthomepage")
-          // console.log(data);
-
           if (data.Message === "User Logged In Successfully") {
             let token = data.Token;
             let user = data.User;
             sessionStorage.setItem("Token", token);
-            // console.log(user);
             sessionStorage.setItem("User", JSON.stringify(user));
             window.location.reload();
           } else {
-            alert("wrong email or password");
+            alert(data.Error);
           }
         })
         .catch((error) => console.error("error:", error));
@@ -84,54 +61,43 @@ const Login = () => {
   return (
     <>
       <Container>
-        {/* <SignInSignOut /> */}
         <Content>
-          {/* <LogoImg src={Logo} alt="chiccloset logo" /> */}
-          <LoginText>Login</LoginText>
           <WBText>Welcome back!</WBText>
-          <GoogleContainer>
-            <div className="flat-color-icons--google"></div>Sign in with google
-          </GoogleContainer>
+          <Entries>
+            <EntryContainer>
+              <EntryTitle>Email</EntryTitle>
+              <Entry
+                type="text"
+                placeholder="bhlak@gmail.com"
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                }}
+              />
+            </EntryContainer>
 
-          <Orline>
-            <hr />
-            or
-            <hr />
-          </Orline>
-
-          <EntryContainer>
-            <EntryTitle>Email</EntryTitle>
-            <Entry
-              type="text"
-              placeholder="bhlak@gmail.com"
-              onChange={(e) => {
-                setEmail(e.target.value);
-              }}
-            />
-          </EntryContainer>
-
-          <EntryContainer>
-            <EntryTitle>Password</EntryTitle>
-            <Entry
-              type="password"
-              placeholder="Password"
-              onChange={(e) => {
-                setPassword(e.target.value);
-              }}
-            />
-          </EntryContainer>
-          <LoginBtn type="submit" onClick={() => LoginApi()}>
-            Login
-          </LoginBtn>
-          <SignupContainer>
-            Don't have an account?{" "}
-            <a
-              onClick={() => navigate("/Signup")}
-              style={{ textDecoration: "none", color: "#692b7d" }}
-            >
-              Sign up
-            </a>
-          </SignupContainer>
+            <EntryContainer>
+              <EntryTitle>Password</EntryTitle>
+              <Entry
+                type="password"
+                placeholder="Password"
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                }}
+              />
+            </EntryContainer>
+            <LoginBtn type="submit" onClick={() => LoginApi()}>
+              Login
+            </LoginBtn>
+            <SignupContainer>
+              Don't have an account?{" "}
+              <a
+                onClick={() => navigate("/Signup")}
+                style={{ textDecoration: "none", color: "#692b7d" }}
+              >
+                Sign up
+              </a>
+            </SignupContainer>
+          </Entries>
         </Content>
       </Container>
     </>
@@ -142,6 +108,7 @@ const Container = styled.div`
   width: 100%;
   display: flex;
   height: 100vh;
+  box-sizing: border-box;
 `;
 
 const Content = styled.div`
@@ -149,7 +116,20 @@ const Content = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 100vh;
+  justify-content: center;
+  margin: 15px 0;
+  // height: 100vh;
+`;
+
+const Entries = styled.div`
+  width: 70%;
+  box-sizing: border-box;
+  height: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  box-sizing: border-box;
 `;
 
 const LogoImg = styled.img`
@@ -177,40 +157,14 @@ const WBText = styled.div`
   font-size: 180%;
 `;
 
-const GoogleContainer = styled.div`
-  font-size: 75%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 50%;
-  height: 45px;
-  background-color: #f5ebfc;
-  border-radius: 5px;
-  margin-top: 3%;
-  font-family: "Quattrocento", serif;
-  font-weight: 400;
-  font-style: normal;
-  gap: 2%;
-`;
-
-const Orline = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  gap: 20px;
-  color: #d1d1d1;
-  margin-top: 3%;
-  margin-bottom: 3%;
-`;
-
 const EntryContainer = styled.div`
-  width: 50%;
+  width: 38%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  height: 10%;
-  margin-bottom: 3%;
+  justify-content: space-around;
+  height: 25%;
+  box-sizing: border-box;
+  // margin-bottom: 3%;
 `;
 
 const EntryTitle = styled.p`
@@ -223,7 +177,7 @@ const EntryTitle = styled.p`
 
 const Entry = styled.input`
   width: 98%;
-  height: 65%;
+  height: 45%;
   background-color: #fbf6fd;
   border: none;
   border-radius: 5px;
@@ -232,12 +186,13 @@ const Entry = styled.input`
   font-family: "Quattrocento", serif;
   font-weight: 500;
   font-style: normal;
+  outline: none;
 `;
 
 const LoginBtn = styled.button`
-  width: 51%;
+  width: 45%;
   background-color: #7e3299;
-  height: 8%;
+  height: 12%;
   display: flex;
   align-items: center;
   justify-content: center;
