@@ -54,7 +54,7 @@ const Ban = () => {
     setShowConfirm(false);
   };
 
-  const banUser = async () => {
+  const   banUser = async () => {
     const details = {
       email: query,
     };
@@ -145,7 +145,7 @@ const Ban = () => {
         </DropContainer>
         {showConfirm && (
           <ConfirmDialog
-            message="Are you sure you want to ban this user?"
+            message={`Are you sure you want to ban user: ${query}?`}
             onConfirm={() => handleConfirm(query)}
             onCancel={handleCancel}
           />
